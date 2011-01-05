@@ -200,9 +200,8 @@ def _parse_overview(lines, fmt, data_process_func=None):
     overview = []
     for line in lines:
         fields = {}
-	temp = line.split('\t')
-	article_number = int(temp[0])
-	tokens = temp[1:]
+        temp = line.split('\t')
+        article_number, tokens = int(temp[0]), temp[1:]
         for i, token in enumerate(tokens):
             if i >= len(fmt):
                 # XXX should we raise an error? Some servers might not
@@ -287,8 +286,8 @@ if _have_ssl:
 #            context.options |= ssl.OP_NO_SSLv2
         if context != None:
 	        return context.wrap_socket(sock)
-	else:
-		return ssl.wrap_socket(sock)
+        else:
+                return ssl.wrap_socket(sock)
 
 
 # The classes themselves
